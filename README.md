@@ -8,9 +8,13 @@ Local development can be done in gitpod. To start the app use
 ```bash
 python manage.py migrate && heroku local
 ```
-
 It will show a local preview in the sidewindow. 
 
+create test users by 
+
+```bash
+export DJANGO_SETTINGS_MODULE=gettingstarted.settings && python create_users.py
+```
 A push on the **main** branch will cause a [GitHub Action](https://github.com/marketplace/actions/deploy-to-heroku) to deploy the App to Heroku.
 <!-- Deploy does not work from the gitpod right now. But you can clone the repo and use the following on your local machine:
 
