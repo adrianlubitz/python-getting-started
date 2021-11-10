@@ -4,9 +4,8 @@ Current version available under https://sardinen-panda-wichteln.herokuapp.com/
 
 ## Dev
 Local development can be done in gitpod. To start the app use 
-
 ```bash
-python manage.py migrate && heroku local
+python manage.py makemigrations && python manage.py migrate && heroku local
 ```
 It will show a local preview in the sidewindow. 
 
