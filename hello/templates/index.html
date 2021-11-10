@@ -3,7 +3,31 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <p>Hallo, {{ user.get_username }}. Hier gibts nichts zu sehen.</p>
+    {% if state == 'suggest' %}
+    Schreibe deinen heimlichen Wichtelzettel
+    <form action="/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="OK">
+    </form>
+    {% elif state == 'wait' %}
+        Du musst noch warten. Die folgenden Wichtel haben noch keine Vorschläge gemacht: 
+        <ul>
+        {% for user in missing_users%}
+            <li>{{ user }}</li>
+        {% endfor %}
+        </ul>
+    {% elif state == 'draw' %}
+        Du musst {{recipient}} etwas mit den folgenden Eigenschaften schenken:
+        <ul>
+            <li>Farbe: {{color}}</li>
+            <li>Beschreibung: {{describtion}}</li>
+        </ul>
+    {% elif state == 'invalidForm' %}
+        Einträge waren nicht möglich
+    {% else %}
+        <p>Hallo, {{ user.get_username }}. Hier gibts nichts zu sehen.</p>
+    {% endif %}
 {% else %}
     <p>Einloggen, dann gehts los.</p>
 {% endif %}
