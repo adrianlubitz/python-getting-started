@@ -1,14 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
 
+
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
 {% block content %}
 {% if user.is_authenticated %}
     {% if state == 'suggest' %}
     Schreibe deinen heimlichen Wichtelzettel
-    <form action="/" method="post">
+    <form action="/" method="post" class="form">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="OK">
+        {% bootstrap_form form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            OK
+          </button>
+          {% endbuttons %}
     </form>
     {% elif state == 'wait' %}
         Du musst noch warten. Die folgenden Wichtel haben noch keine Vorschläge gemacht: 
