@@ -1,28 +1,61 @@
 {% extends "base.html" %}
 {% load static %}
 
+
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
 {% block content %}
+<div class="d-flex justify-content-center bg-transparent"> 
 {% if user.is_authenticated %}
     {% if state == 'suggest' %}
-    Schreibe deinen heimlichen Wichtelzettel
-    <form action="/" method="post">
+    <div class="d-flex flex-column bg-transparent">
+    <div class="d-flex justify-content-center bg-transparent">Schreibe deinen heimlichen Wichtelzettel</div>
+  <div class="d-flex justify-content-center bg-transparent"> 
+    <form action="/" method="post" class="form">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="OK">
+        {% bootstrap_form form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            OK
+          </button>
+          {% endbuttons %}
     </form>
+    </div>  
+    </div>
     {% elif state == 'wait' %}
+    <div class="d-flex flex-column bg-transparent">
+    <div class="d-flex justify-content-center bg-transparent">
         Du musst noch warten. Die folgenden Wichtel haben noch keine Vorschläge gemacht: 
+    </div>
+    <div class="d-flex justify-content-center bg-transparent">
         <ul>
         {% for user in missing_users%}
             <li>{{ user }}</li>
         {% endfor %}
         </ul>
+    </div>
+    </div>
     {% elif state == 'draw' %}
+    <div class="d-flex flex-column bg-transparent">
+    <div class="d-flex justify-content-center bg-transparent">
         Du musst {{recipient}} etwas mit den folgenden Eigenschaften schenken:
+    </div>
+    <div class="d-flex justify-content-center bg-transparent">
         <ul>
             <li>Farbe: {{color}}</li>
             <li>Beschreibung: {{describtion}}</li>
         </ul>
+    </div>
+    </div>
     {% elif state == 'invalidForm' %}
         Einträge waren nicht möglich
     {% else %}
@@ -31,5 +64,5 @@
 {% else %}
     <p>Einloggen, dann gehts los.</p>
 {% endif %}
-
+</div>
 {% endblock %}
