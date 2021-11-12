@@ -60,6 +60,7 @@
 
   </style>
 
+
 {# Load the tag library #}
 {% load bootstrap5 %}
 
@@ -111,9 +112,11 @@
         ❆
       </div>
   </div>
-  <audio src="{% static 'mistletoe.png' %}">
+  {% if user.is_authenticated %}
+  <audio src="{% static 'snow_is_falling.mp3' %}" autoplay loop>
     <p>If you are reading this, it is because your browser does not support the audio element.     </p>
   </audio>
+  {% endif %}
 <nav class="navbar navbar-default navbar-static-top navbar-inverse">
   
   <div class="container">
