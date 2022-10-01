@@ -2,6 +2,9 @@
 This project is aiming to make a wichteln draw.
 Current version available under https://sardinen-panda-wichteln.herokuapp.com/
 
+## Manage
+As Admin you can access the admin panel under https://sardinen-panda-wichteln.herokuapp.com/admin
+
 ## Dev
 Local development can be done in gitpod. To start the app use 
 ```bash
