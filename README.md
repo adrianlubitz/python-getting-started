@@ -5,6 +5,9 @@ Current version available under https://sardinen-panda-wichteln.herokuapp.com/
 ## Manage
 As Admin you can access the admin panel under https://sardinen-panda-wichteln.herokuapp.com/admin
 
+## Reset
+Use the `reset.pgsql` file top reset the wichtel draw
+
 ## Dev
 Local development can be done in gitpod. To start the app use 
 ```bash
